@@ -1,1 +1,87 @@
+/*** Base styles ***/
+*{
+	box-sizing: border-box;
+	/*clear: both;*/
+}
+span{
+  border: 1px solid black;
+	/* width: 175px; */
+	font-family: monospace;
+	display:block;
+	text-align: center;
+  float: right;
+	font-size: 1.5em;
+	top: 40px;
+	opacity: 50%;
+	background-color: blue ; 
+}
+		
 
+	.entry1{
+ 		 background:pink ;
+}
+	.entry2{
+ 		 background: red;
+}
+	.entry3{
+ 		 background:yellow  ;
+}
+
+p{
+	clear: right;
+}
+
+.item{
+	border: 1px solid black ;
+	background: gray ;
+	height: 120px;
+	overflow: auto;
+	margin-bottom: 15px;
+  font-family: helvetica  ;
+	color: black ;
+}
+
+ h1:hover {
+  cursor: pointer;
+}
+		h1{
+			margin-bottom: 15px;
+      text-align: center;
+      font-family: monospace;
+		}
+		
+		/*** simple responsive design ***/
+		.row{
+			width: 100%;
+		}
+		/*** Large devices only ***/
+		@media (min-width: 992px){
+				
+			.col-lg-4{
+				float: left;
+				width: 33.33%;
+				padding: 0 10px;
+			}
+	
+		}
+		/*** Medium devices only ***/
+		@media (min-width: 768px) and (max-width: 991px){
+		
+			
+			.col-md-6{
+				float: left;
+				width: 50%;
+				padding: 0 10px;
+				
+			}
+		
+			.col-md-12{
+				float: left;
+				width: 100%;
+				/*clear: left;*/
+				padding: 0px 10px;
+				margin-left: 0;
+				margin-right: 0;
+			}
+			
+		}		
