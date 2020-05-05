@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+				<meta charset="utf-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<title>Ali Al-bakri</title>
+  				<link rel="stylesheet" type="text/css" href="css/mystyle.css">	
+          <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+          <script type="text/javascript">
+            function getItemt(category){
+
+                $('.category').hide();
+                $('.items_ali').show();
+                 $.ajax({
+                url:'/php/getDataByCategory.php',
+                dataType:'json',
+                type:'get',
+                data:{cat_id:category},
+                beforeSend: function(){
+
+                },success: function(data){
+       
+                  $.each(data,function(key,val){
+                 
+                    $('#content_item').append('<section class="col-lg-4 col-md-6"  >'+
+                      '<div class="item" category="'+val['id']+'" id="s1" >'+
+                            '<span class="entry1">'+val['name']+'</span>'+
+                            '<p>'+val['description']+'</p>'+
+                        '</div>'+
+                    '</section>');
+                  })
+                }
+                });
+            }
+            $(document).ready(function(){
+              if(location.hash != ''){
+                var category = location.hash.split('#');
+                if(category.length > 0){
+                getItemt(category[1]);
+                }
+              }
+
+              $(document).on('click','.back',function(){
+                $('#content_item').html('');
+                $('.category').show();
+                $('.items_ali').hide();
+                return false;  
+              });
+
+              $(document).on('click','.item_data',function(){
+                var category = $(this).attr('category');
+                getItemt(category);
+              
+
+               
+              });
+
+
+              $.ajax({
+                url:'/php/getDataByCategory.php',
+                dataType:'json',
+                type:'get',
+                data:{type:'category'},
+                beforeSend: function(){
+
+                },success: function(data){
+       
+                  $.each(data,function(key,val){
+                 
+                    $('#content').append('<section class="col-lg-4 col-md-6"  >'+
+                      '<div class="item" id="s1" >'+
+                            '<a href="#'+val['id']+'" class="item_data" category="'+val['id']+'">'+
+                            '<span class="entry1">'+val['name']+'</span>'+
+                            '<p>'+val['description']+'</p>'+
+                            '</a>'+
+                        '</div>'+
+                    '</section>');
+                  })
+                }
+
+              });
+            });
+          </script>
+          <style type="text/css">
+            .item{
+              cursor: pointer;
+            }
+          </style>
+	</head>
+
+<body>
+  <div class="items_ali" style="display:none">
+    <p><a href="http://localhost" class="back">Back</a></p>
+    <hr />
+    <br>
+      <div class="row" id="content_item"></div>
+
+  </div>
+  <div class="category">
+		<h1>Our Menu</h1>
+		<div class="row" id="content"></div>
+    </div>
+
+
+</body>
+
+</html>
